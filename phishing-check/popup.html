@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <iframe src="capri3d.html?mode=wave" class="avatar" title="Capri" aria-hidden="true" tabindex="-1"></iframe>
+    <h1>Phishing-Check</h1>
+    <label class="switch" title="Schutz ein/aus">
+      <input type="checkbox" id="enabled">
+      <span></span>
+    </label>
+  </header>
+
+  <div id="speech" class="speech" hidden>
+    <div class="speech-head"><span>◢ SYS//WÄCHTERIN</span><span class="speech-tag">ALARM</span></div>
+    <div id="speechText" class="speech-text"></div>
+  </div>
+
+  <section id="page" class="card">
+    <div class="row">
+      <div>
+        <div class="label">Aktuelle Seite</div>
+        <div id="host" class="host">…</div>
+      </div>
+      <div id="score" class="score">–</div>
+    </div>
+    <div id="verdict" class="verdict"></div>
+    <div id="reasons" class="reasons"></div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <div class="label">Auffällige Links und Absender</div>
+      <div id="count" class="count">0</div>
+    </div>
+    <div id="links" class="links"></div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <div>
+        <div class="label">Sperrlisten</div>
+        <div id="listInfo" class="small">Wird geladen …</div>
+      </div>
+      <button id="update" class="mini">Aktualisieren</button>
+    </div>
+  </section>
+
+  <section class="card row">
+    <div>
+      <div class="label">Assistentin</div>
+      <div class="small">Warnt dich direkt auf der Seite</div>
+    </div>
+    <div class="row">
+      <button id="talk" class="mini" title="Capri zuhören lassen (oder Alt+Shift+C)">🎤 Sprechen</button>
+      <button id="testAssistant" class="mini">Testen</button>
+      <label class="switch"><input type="checkbox" id="assistant"><span></span></label>
+    </div>
+  </section>
+
+  <section class="card row">
+    <div>
+      <div class="label">Statistik</div>
+      <div id="statLine" class="small">…</div>
+    </div>
+    <button id="options" class="mini" title="Einstellungen und Statistik öffnen">⚙ Einstellungen</button>
+  </section>
+
+  <button id="trust" class="trust">Dieser Seite vertrauen</button>
+  <div id="note" class="note"></div>
+  <div class="small credit">3D-Modell: <a href="https://sketchfab.com/0x00001337" target="_blank" rel="noopener">„Capri (Project Capricorn)“ by 0x00001337</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></div>
+
+  <script src="analyzer.js"></script>
+  <script src="settings.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

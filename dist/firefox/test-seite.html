@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Phishing-Check Testseite</title>
+<style>
+  body { font: 12pt Calibri, sans-serif; max-width: 640px; margin: 40px auto; line-height: 1.8; }
+  h1 { font-size: 20pt; } h2 { font-size: 15pt; margin-top: 28px; }
+</style>
+</head>
+<body>
+<h1>Phishing-Check Testseite</h1>
+<p>Fahre mit der Maus über die Links. Rot markierte Links werden beim Klick abgefangen. Keiner dieser Links ist echt.</p>
+
+<h2>Harmlos</h2>
+<p><a href="https://www.paypal.com/signin">PayPal (echt)</a></p>
+<p><a href="https://github.com/Tscheky">GitHub</a></p>
+<p><a href="https://george.sparkasse.at">George (echt)</a></p>
+
+<h2>Verdächtig oder gefährlich</h2>
+<p><a href="https://paypa1.com/login">Tippfehler-Domain</a></p>
+<p><a href="https://paypal-secure-login.com/verify/account">Marke in fremder Domain</a></p>
+<p><a href="https://amaz0n-konto.xyz/bestaetigen">Amazon-Fälschung mit .xyz</a></p>
+<p><a href="https://www.dhl.de@evil.top/track">@-Trick mit DHL</a></p>
+<p><a href="https://evil.example.net/login">https://www.raiffeisen.at</a></p>
+<p><a href="http://192.168.4.20/bank/login">IP-Adresse statt Domain</a></p>
+<p><a href="https://files.example.com/rechnung.pdf.exe">Rechnung.pdf</a></p>
+<p><a href="https://xn--pypal-4ve.com">Doppelgänger-Buchstaben</a></p>
+<p><a href="https://bit.ly/3abc">Kurzlink</a></p>
+
+<h2>Absender wie in Gmail</h2>
+<p><span email="service@paypal-hilfe.net" name="PayPal Service">PayPal Service</span></p>
+<p><span email="x@mail.ru" name="support@amazon.de">support@amazon.de</span></p>
+
+<h2>Doppelgänger-Buchstaben (kyrillisch)</h2>
+<p><a href="https://xn--80ak6aa92e.com/login">аррӏе.com (sieht aus wie apple.com)</a></p>
+
+<h2>QR-Code (Quishing)</h2>
+<p><img src="test-qr.png" width="160" height="160" alt="QR-Code zu einer gefälschten PayPal-Seite"></p>
+
+<h2>Formular-Wächter</h2>
+<p>Klick in das Passwortfeld: Das Formular schickt die Daten an eine fremde Adresse.</p>
+<form action="https://paypa1-login.xyz/steal" method="post" onsubmit="return false">
+  <input name="user" placeholder="E-Mail"> <input type="password" name="pw" placeholder="Passwort">
+  <input name="cardnumber" placeholder="Kartennummer"> <button>Anmelden</button>
+</form>
+
+<h2>Wie in Outlook im Browser</h2>
+<p>Absender: <span title="security@micros0ft-konto.xyz">Microsoft Sicherheitsteam</span></p>
+<p>Anhang: <span title="Rechnung_2026.pdf.exe">Rechnung_2026.pdf.exe</span> (wird nur auf Mail-Seiten wie outlook.live.com geprüft)</p>
+</body>
+</html>

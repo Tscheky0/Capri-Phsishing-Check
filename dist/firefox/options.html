@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phishing-Check · Einstellungen</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header>
+    <iframe src="capri3d.html?mode=proud" class="avatar" title="Capri" aria-hidden="true" tabindex="-1"></iframe>
+    <div>
+      <h1>Einstellungen</h1>
+      <p class="muted">Phishing-Check mit Capri · Änderungen werden sofort gespeichert und gelten ab dem nächsten Neuladen einer Seite.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Schutz</h2>
+      <label class="row"><span><b>Schutz aktiv</b><small>Links, Seiten und Absender prüfen</small></span><input type="checkbox" data-key="enabled"></label>
+      <div class="row">
+        <span><b>Empfindlichkeit</b><small>Wie schnell Capri Alarm schlägt</small></span>
+        <div class="seg" role="radiogroup" aria-label="Empfindlichkeit">
+          <label><input type="radio" name="sensitivity" value="low"><span>Locker</span></label>
+          <label><input type="radio" name="sensitivity" value="normal"><span>Normal</span></label>
+          <label><input type="radio" name="sensitivity" value="high"><span>Streng</span></label>
+        </div>
+      </div>
+      <label class="row"><span><b>Formular-Wächter</b><small>Warnt, sobald du auf einer verdächtigen Seite ein Passwort- oder Kreditkartenfeld anklickst</small></span><input type="checkbox" data-key="formGuard"></label>
+      <label class="row"><span><b>Link-Vorschau</b><small>Zeigt beim Überfahren jedes fremden Links das echte Ziel mit Ampel</small></span><input type="checkbox" data-key="linkPreview"></label>
+      <label class="row"><span><b>Gmail / Outlook im Browser</b><small>Prüft Anzeigename gegen echte Absenderadresse und Anhänge mit getarnten Endungen</small></span><input type="checkbox" data-key="mailCheck"></label>
+      <label class="row"><span><b>QR-Codes prüfen</b><small>Liest QR-Codes in Bildern und prüft die Zieladresse</small></span><input type="checkbox" data-key="qrCheck"></label>
+      <div class="row sub">
+        <span><b>Auch Bilder von fremden Servern</b><small id="qrPermText">Braucht die Erlaubnis, Bilder von allen Seiten zu laden. Ohne sie werden nur Bilder der Seite selbst gelesen.</small></span>
+        <button id="qrPerm" class="btn">Erlauben</button>
+      </div>
+      <label class="row"><span><b>Domain-Alter prüfen</b><small>Fragt bei rdap.org nach, wann eine Domain registriert wurde – nur bei verdächtigen Seiten, Login-Formularen oder wenn du Capri fragst. Unter 30 Tagen gibt es viele Risikopunkte.</small></span><input type="checkbox" data-key="rdapCheck"></label>
+    </section>
+
+    <section class="card">
+      <h2>Passwort-Wiederverwendung</h2>
+      <label class="row"><span><b>Passwort-Alarm</b><small>Capri merkt sich Passwörter von Bank- und Markenseiten als Hash (nicht umkehrbar, nur auf diesem Gerät) und schlägt Alarm, wenn du eins davon auf einer anderen Domain eintippst.</small></span><input type="checkbox" data-key="pwGuard"></label>
+      <label class="field"><b>Zusätzlich geschützte Domains</b><small>Eine pro Zeile, z. B. <code>meineschule.at</code>. Banken wie sparkasse.at, raiffeisen.at oder paypal.com sind automatisch dabei.</small>
+        <textarea data-list="protectedDomains" rows="3" spellcheck="false"></textarea></label>
+      <div class="row"><span id="vaultInfo" class="muted">…</span><button id="vaultClear" class="btn danger">Gespeicherte Hashes löschen</button></div>
+    </section>
+
+    <section class="card">
+      <h2>Vertrauenswürdige Seiten</h2>
+      <label class="field"><small>Diese Domains werden nie geprüft oder markiert. Eine pro Zeile.</small>
+        <textarea data-list="whitelist" rows="4" spellcheck="false"></textarea></label>
+    </section>
+
+    <section class="card">
+      <h2>Capri</h2>
+      <label class="row"><span><b>Assistentin anzeigen</b><small>Capri läuft unten auf jeder Seite herum</small></span><input type="checkbox" data-key="assistant"></label>
+      <label class="row"><span><b>3D-Modell</b><small>Lädt Three.js (~600 kB), aber erst wenn der Tab sichtbar ist. Aus = gezeichnete Capri.</small></span><input type="checkbox" data-key="capri3d"></label>
+      <label class="row"><span><b>Stimmungen</b><small>Schläft nach einer Minute ohne Bewegung ein, ist nach einem Fund stolz, frech und völlig aufgedreht</small></span><input type="checkbox" data-key="moods"></label>
+      <label class="row"><span><b>Reaktion auf Seiten</b><small>Tanzt bei laufenden YouTube-Videos, steht auf Bankseiten mit verschränkten Armen Wache</small></span><input type="checkbox" data-key="pageReactions"></label>
+      <label class="row"><span><b>Nachtmodus</b><small>Leuchtet neon, wenn die Seite dunkel ist</small></span><input type="checkbox" data-key="nightMode"></label>
+    </section>
+
+    <section class="card">
+      <h2>Stimme &amp; Sprachbefehle</h2>
+      <label class="row"><span><b>Sprachbefehle</b><small>Alt+Shift+C oder Doppelklick auf Capri</small></span><input type="checkbox" data-key="voiceCommands"></label>
+      <label class="row"><span><b>Antworten vorlesen</b><small>Capri antwortet mit Stimme</small></span><input type="checkbox" data-key="speakAloud"></label>
+      <label class="row"><span><b>Glitch-Geräusch</b><small>Kurzes Datenchip-Knistern, bevor sie spricht</small></span><input type="checkbox" data-key="glitchSfx"></label>
+      <label class="row"><span><b>Tonhöhe</b> <output id="pitchOut"></output></span><input type="range" data-num="voicePitch" min="0.5" max="2" step="0.05"></label>
+      <label class="row"><span><b>Tempo</b> <output id="rateOut"></output></span><input type="range" data-num="voiceRate" min="0.6" max="1.8" step="0.05"></label>
+      <div class="row"><span class="muted">Befehle: „google …“, „YouTube …“, „öffne …“, „prüf diesen Link“, „ist die Seite sicher?“, „lies mir die Seite vor“, „stopp“, „erinnere mich in 10 Minuten an …“, „zeig Statistik“, „tanz“ …</span><button id="tryVoice" class="btn">Probehören</button></div>
+    </section>
+
+    <section class="card" id="stats">
+      <h2>Statistik</h2>
+      <div class="tiles" id="tiles"></div>
+      <div class="chart" id="chart" aria-label="Gefundene Gefahren der letzten 14 Tage"></div>
+      <div class="row"><span id="since" class="muted"></span><button id="statsReset" class="btn">Zurücksetzen</button></div>
+    </section>
+
+    <p class="muted credit">3D-Modell: „Capri (Project Capricorn)“ by 0x00001337, CC BY 4.0 · Three.js (MIT) · jsQR (Apache 2.0)</p>
+    <div id="saved" class="saved" role="status"></div>
+  </main>
+
+  <script src="settings.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+@font-face { font-family: "PC Orbitron"; src: url("assets/fonts/orbitron-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "PC Mono"; src: url("assets/fonts/share-tech-mono-latin-400-normal.woff2") format("woff2"); }
+:root { --c1: #ff003c; --c2: #ff2bd6; --cy: #00f0ff; --bg: #07060d; --txt: #e9fbff; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; color: var(--txt);
+  font: 12pt/1.55 "PC Mono", Consolas, monospace;
+  background: radial-gradient(ellipse at top, #2a0018 0%, #07060d 60%), #07060d;
+}
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px); }
+.frame { width: 100%; max-width: 660px; padding: 2px; background: linear-gradient(135deg, var(--c1), var(--c2)); clip-path: polygon(26px 0, 100% 0, 100% calc(100% - 26px), calc(100% - 26px) 100%, 0 100%, 0 26px); filter: drop-shadow(0 0 22px var(--c1)); animation: boot .5s ease-out; }
+main { background: var(--bg); padding: 30px 32px; clip-path: inherit; }
+.talk { display: flex; align-items: center; gap: 18px; }
+.avatar { width: 120px; height: 170px; border: 0; background: transparent; color-scheme: light dark; flex-shrink: 0; pointer-events: none; animation: glitch .35s steps(2) 3; }
+.speech { border: 1px solid var(--cy); padding: 12px 16px; color: var(--cy); text-shadow: 0 0 6px rgba(0,240,255,.6); }
+.speech::before { content: "◢ SYS//WÄCHTERIN"; display: block; font: 700 9pt "PC Orbitron", sans-serif; letter-spacing: .2em; color: var(--c2); margin-bottom: 4px; }
+h1 { font: 700 22pt/1.2 "PC Orbitron", sans-serif; text-transform: uppercase; letter-spacing: .06em; margin: 22px 0 8px; color: var(--c1); text-shadow: 0 0 12px var(--c1); }
+.box { border-left: 3px solid var(--c2); background: rgba(255, 43, 214, .07); padding: 12px 16px; margin: 18px 0; }
+.label { font: 700 9pt "PC Orbitron", sans-serif; color: var(--c2); text-transform: uppercase; letter-spacing: .15em; margin-top: 8px; }
+.url { font-weight: 700; word-break: break-all; }
+.hint { color: #b9a9c7; }
+.btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+button { cursor: pointer; border: 0; padding: 12px 22px; font: 700 11pt "PC Orbitron", sans-serif; letter-spacing: .12em; text-transform: uppercase; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+.safe { background: var(--cy); color: var(--bg); }
+.safe:hover { background: #fff; }
+.risk { background: transparent; color: var(--c2); text-decoration: underline; }
+@keyframes boot { 0% { opacity: 0; transform: scaleY(.04); } 60% { opacity: 1; transform: scaleY(1.03); } 100% { transform: none; } }
+@keyframes glitch { 33% { transform: translate(-3px, 2px); filter: hue-rotate(40deg); } 66% { transform: translate(3px, -2px); filter: hue-rotate(-40deg); } }

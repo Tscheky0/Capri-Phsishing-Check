@@ -1,0 +1,49 @@
+@font-face { font-family: "PC Orbitron"; src: url("assets/fonts/orbitron-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "PC Mono"; src: url("assets/fonts/share-tech-mono-latin-400-normal.woff2") format("woff2"); }
+:root { --ok: #188038; --warn: #e37400; --danger: #d93025; --bg: #f6f7f9; --card: #fff; --text: #1f1f1f; --muted: #5f6368; --line: #e3e5e8; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #1e1f22; --card: #2b2d31; --text: #ececec; --muted: #a8abb0; --line: #3a3c42; }
+}
+* { box-sizing: border-box; }
+body { width: 360px; margin: 0; padding: 12px; background: var(--bg); color: var(--text); font: 14px/1.45 Calibri, "Segoe UI", sans-serif; }
+header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+header img { width: 28px; height: 28px; }
+h1 { font-size: 18px; margin: 0; flex: 1; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.host { font-weight: 600; word-break: break-all; }
+.score { min-width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 18px; color: #fff; background: var(--muted); }
+.score.ok { background: var(--ok); } .score.warn { background: var(--warn); } .score.danger { background: var(--danger); }
+.verdict { margin-top: 8px; font-weight: 600; }
+.reasons div, .item .why { color: var(--muted); font-size: 13px; margin-top: 3px; }
+.count { font-weight: 700; font-size: 16px; }
+.links { margin-top: 6px; max-height: 220px; overflow-y: auto; }
+.item { border-top: 1px solid var(--line); padding: 7px 0; }
+.item .top { display: flex; justify-content: space-between; gap: 8px; }
+.item .h { font-weight: 600; word-break: break-all; }
+.pill { font-size: 12px; font-weight: 700; border-radius: 10px; padding: 1px 8px; color: #fff; white-space: nowrap; height: fit-content; }
+.pill.warn { background: var(--warn); } .pill.danger { background: var(--danger); }
+.empty { color: var(--muted); margin-top: 6px; }
+.trust { width: 100%; padding: 9px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--text); font: 600 14px Calibri, "Segoe UI", sans-serif; cursor: pointer; }
+.trust:hover { border-color: #1a73e8; }
+.note { color: var(--muted); font-size: 12px; margin-top: 8px; text-align: center; }
+.switch { position: relative; width: 40px; height: 22px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch span { position: absolute; inset: 0; background: #9aa0a6; border-radius: 22px; cursor: pointer; transition: .2s; }
+.switch span::before { content: ""; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+.switch input:checked + span { background: var(--ok); }
+.switch input:checked + span::before { transform: translateX(18px); }
+.small { font-size: 13px; margin-top: 2px; }
+.small .err { color: var(--warn); }
+.mini { border: 1px solid var(--line); background: var(--bg); color: var(--text); border-radius: 6px; padding: 5px 10px; font: 600 12px Calibri, "Segoe UI", sans-serif; cursor: pointer; white-space: nowrap; }
+.mini:disabled { opacity: .6; cursor: wait; }
+header .avatar { width: 52px; height: 72px; border: 0; background: transparent; color-scheme: light dark; pointer-events: none; flex-shrink: 0; }
+
+.speech { --c1: #fcee0a; --c2: #00f0ff; margin-bottom: 10px; padding: 2px; background: linear-gradient(135deg, var(--c1), var(--c2)); clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
+.speech.danger { --c1: #ff003c; --c2: #ff2bd6; }
+.speech > * { background: #07060d; }
+.speech-head { display: flex; justify-content: space-between; padding: 8px 12px 6px; font: 700 10px "PC Orbitron", sans-serif; letter-spacing: .18em; color: var(--c1); text-shadow: 0 0 6px var(--c1); clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px); }
+.speech-tag { background: var(--c1); color: #07060d; padding: 2px 5px; text-shadow: none; animation: blink 1s steps(1) infinite; }
+.speech-text { padding: 4px 12px 12px; font: 14px/1.45 "PC Mono", Consolas, monospace; color: #e9fbff; min-height: 2em; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%); }
+@keyframes blink { 50% { opacity: 0; } }

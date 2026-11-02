@@ -1,0 +1,99 @@
+{
+    "manifest_version":  3,
+    "name":  "Phishing-Check",
+    "version":  "1.5.0",
+    "description":  "Prüft Links und E-Mail-Absender auf Phishing-Merkmale, nutzt Sperrlisten und blockiert gefährliche Seiten.",
+    "permissions":  [
+                        "storage",
+                        "activeTab",
+                        "alarms",
+                        "webNavigation",
+                        "unlimitedStorage",
+                        "notifications"
+                    ],
+    "commands":  {
+                     "capri-listen":  {
+                                          "suggested_key":  {
+                                                                "default":  "Alt+Shift+C"
+                                                            },
+                                          "description":  "Capri zuhören lassen (Sprachbefehl)"
+                                      }
+                 },
+    "background":  {
+                       "scripts":  [
+                                       "analyzer.js",
+                                       "settings.js",
+                                       "vendor/jsQR.js",
+                                       "background.js"
+                                   ]
+                   },
+    "content_scripts":  [
+                            {
+                                "matches":  [
+                                                "\u003call_urls\u003e"
+                                            ],
+                                "js":  [
+                                           "analyzer.js",
+                                           "settings.js",
+                                           "content.js"
+                                       ],
+                                "css":  [
+                                            "content.css"
+                                        ],
+                                "run_at":  "document_idle"
+                            }
+                        ],
+    "action":  {
+                   "default_popup":  "popup.html",
+                   "default_title":  "Phishing-Check",
+                   "default_icon":  {
+                                        "16":  "icons/icon16.png",
+                                        "48":  "icons/icon48.png",
+                                        "128":  "icons/icon128.png"
+                                    }
+               },
+    "icons":  {
+                  "16":  "icons/icon16.png",
+                  "48":  "icons/icon48.png",
+                  "128":  "icons/icon128.png"
+              },
+    "host_permissions":  [
+                             "https://urlhaus.abuse.ch/*",
+                             "https://openphish.com/*",
+                             "https://phishing.army/*",
+                             "https://raw.githubusercontent.com/*",
+                             "https://rdap.org/*"
+                         ],
+    "web_accessible_resources":  [
+                                     {
+                                         "resources":  [
+                                                           "assets/assistant.png",
+                                                           "assets/assistant-sq.png",
+                                                           "assets/fonts/*",
+                                                           "assets/capri.glb",
+                                                           "capri3d.html",
+                                                           "capri3d.js",
+                                                           "capri-rig3d.js",
+                                                           "capri-voice.html",
+                                                           "capri-voice.js",
+                                                           "vendor/*"
+                                                       ],
+                                         "matches":  [
+                                                         "\u003call_urls\u003e"
+                                                     ]
+                                     }
+                                 ],
+    "options_ui":  {
+                       "page":  "options.html",
+                       "open_in_tab":  true
+                   },
+    "optional_host_permissions":  [
+                                      "\u003call_urls\u003e"
+                                  ],
+    "browser_specific_settings":  {
+                                      "gecko":  {
+                                                    "id":  "phishing-check-capri@schulungszentrum.local",
+                                                    "strict_min_version":  "121.0"
+                                                }
+                                  }
+}

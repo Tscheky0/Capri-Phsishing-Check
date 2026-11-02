@@ -1,0 +1,180 @@
+@font-face { font-family: "PC Orbitron"; src: url("moz-extension://__MSG_@@extension_id__/assets/fonts/orbitron-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "PC Mono"; src: url("moz-extension://__MSG_@@extension_id__/assets/fonts/share-tech-mono-latin-400-normal.woff2") format("woff2"); }
+
+a.pc-warn { outline: 2px dashed #f29900 !important; outline-offset: 2px; }
+a.pc-danger, .pc-mail.pc-danger { outline: 2px solid #d93025 !important; outline-offset: 2px; background: rgba(217, 48, 37, .08) !important; }
+.pc-mail.pc-warn { outline: 2px dashed #f29900 !important; outline-offset: 2px; }
+
+.pc-tip {
+  position: fixed; z-index: 2147483647; max-width: 360px; padding: 10px 12px; border-radius: 8px;
+  font: 13px/1.45 Calibri, "Segoe UI", sans-serif; color: #1f1f1f; background: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .25); pointer-events: none;
+}
+.pc-tip strong { display: block; margin-bottom: 4px; font-size: 14px; }
+.pc-tip-target { color: #555; margin-bottom: 4px; word-break: break-all; }
+.pc-tip-danger { border-left: 5px solid #d93025; }
+.pc-tip-warn { border-left: 5px solid #f29900; }
+.pc-tip-ok { border-left: 5px solid #188038; }
+.pc-light { display: inline-block; width: 10px; height: 10px; margin-right: 7px; border-radius: 50%; vertical-align: 0; box-shadow: 0 0 6px currentColor; }
+.pc-light-ok { background: #188038; color: #188038; }
+.pc-light-warn { background: #f29900; color: #f29900; }
+.pc-light-danger { background: #d93025; color: #d93025; }
+.pc-tip-sig { margin-top: 4px; color: #b0187a; font-style: italic; font-size: 12px; text-align: right; }
+
+/* Bilder (QR-Codes), Anhänge und Formularfelder */
+img.pc-danger, .pc-att.pc-danger { outline: 4px solid #d93025 !important; outline-offset: 2px; }
+img.pc-warn { outline: 3px dashed #f29900 !important; outline-offset: 2px; }
+input.pc-field-danger { outline: 3px solid #d93025 !important; outline-offset: 1px; box-shadow: 0 0 12px rgba(217, 48, 37, .6) !important; }
+input.pc-field-warn { outline: 3px dashed #f29900 !important; outline-offset: 1px; }
+
+.pc-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 2147483646; display: flex; gap: 12px; align-items: center;
+  justify-content: space-between; padding: 10px 16px; background: #d93025; color: #fff;
+  font: 600 14px/1.4 Calibri, "Segoe UI", sans-serif; box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+}
+.pc-banner button { border: 1px solid #fff; background: transparent; color: #fff; border-radius: 6px; padding: 4px 10px; cursor: pointer; font: inherit; }
+
+
+/* ===== Cyberpunk-Assistentin ===== */
+#pc-assistant, .pc-modal-wrap { --c1: #00f0ff; --c2: #ff2bd6; --hot: #ff2bd6; --bg: #07060d; --txt: #e9fbff; }
+#pc-assistant.pc-danger, .pc-modal-wrap { --c1: #ff003c; --c2: #ff2bd6; --hot: #ff003c; }
+#pc-assistant.pc-warn { --c1: #fcee0a; --c2: #00f0ff; --hot: #fcee0a; }
+
+#pc-assistant { all: initial; position: fixed; left: 0; bottom: 4px; z-index: 2147483645; pointer-events: none; will-change: transform; }
+#pc-assistant * { box-sizing: border-box; }
+
+#pc-assistant .pc-frame {
+  position: absolute; bottom: 146px; right: 0; width: max-content; max-width: min(340px, 86vw); padding: 2px; pointer-events: auto;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+  filter: drop-shadow(0 0 12px var(--hot)); transition: opacity .25s, transform .25s;
+  animation: pc-boot .45s ease-out;
+}
+#pc-assistant .pc-bubble {
+  position: relative; padding: 10px 16px 14px; background: var(--bg); color: var(--txt);
+  clip-path: inherit; overflow: hidden;
+  background-image: linear-gradient(160deg, rgba(255, 43, 214, .10), transparent 45%), linear-gradient(0deg, rgba(0, 240, 255, .06), transparent 60%);
+}
+#pc-assistant .pc-bubble::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .045) 0 1px, transparent 1px 3px);
+}
+#pc-assistant .pc-head {
+  padding-right: 30px; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--c1); font: 700 11px/1 "PC Orbitron", "Segoe UI", sans-serif; letter-spacing: .18em; color: var(--c1);
+  text-transform: uppercase; text-shadow: 0 0 6px var(--c1);
+}
+#pc-assistant .pc-tag { margin-left: auto; padding: 3px 6px; background: var(--hot); color: #07060d; text-shadow: none; animation: pc-blink 1s steps(1) infinite; }
+#pc-assistant .pc-bubble-text {
+  font: 15px/1.5 "PC Mono", Consolas, monospace; color: var(--txt); text-shadow: 0 0 4px rgba(0, 240, 255, .5); white-space: pre-wrap; min-height: 1.5em;
+}
+#pc-assistant .pc-cursor { display: inline-block; width: .55em; height: 1.05em; margin-left: 2px; vertical-align: -2px; background: var(--c1); animation: pc-blink .8s steps(1) infinite; }
+#pc-assistant .pc-bubble-close {
+  all: unset; position: absolute; top: 6px; right: 8px; z-index: 2; cursor: pointer;
+  font: 700 12px "PC Orbitron", sans-serif; color: var(--c2); padding: 2px 4px;
+}
+#pc-assistant .pc-bubble-close:hover { color: #fff; text-shadow: 0 0 6px var(--c2); }
+
+#pc-assistant.pc-hidden .pc-frame { opacity: 0; transform: translateX(20px); pointer-events: none; animation: none; }
+#pc-assistant.pc-lefthalf .pc-frame { right: auto; left: 0; }
+
+/* ===== Capri (laufende Figur) ===== */
+.pc-capri { display: block; width: 110px; height: 141px; }
+#pc-assistant .pc-capri { pointer-events: auto; cursor: grab; touch-action: none; user-select: none; filter: drop-shadow(0 0 6px rgba(255, 30, 86, .55)) drop-shadow(0 3px 2px rgba(0, 0, 0, .35)); }
+#pc-assistant .pc-capri[data-mode="held"] { cursor: grabbing; }
+.pc-capri-svg { display: block; width: 100%; height: 100%; overflow: visible; transition: transform .2s; filter: drop-shadow(2px 1.5px 0 #8a2be2); }
+.pc-capri.pc-left .pc-capri-svg { transform: scaleX(-1); }
+
+/* 3D-Capri: iframe ragt über die Trefferfläche hinaus, fängt aber keine Klicks ab */
+.pc-capri { position: relative; }
+.pc-capri .pc-capri-3d {
+  all: initial; display: block; position: absolute; left: 50%; bottom: 0; width: 160px; height: 220px;
+  transform: translateX(-50%); border: 0; background: transparent; pointer-events: none; opacity: 0; color-scheme: light dark;
+}
+.pc-capri.pc-3d .pc-capri-3d { opacity: 1; }
+.pc-capri.pc-3d .pc-capri-svg, .pc-capri.pc-3d-wait .pc-capri-svg { visibility: hidden; }
+#pc-assistant:has(.pc-3d) .pc-frame { bottom: 214px; }
+.pc-modal-avatar.pc-3d .pc-capri-3d { height: 180px; width: 130px; }
+
+/* Posen und Gelenke steuert content.js (rigCapri); hier nur Glitzer, Glitch und Farbe */
+.pc-c-sparkle { animation: pc-blink 1.3s steps(2) infinite; }
+.pc-c-sparkle2 { animation-delay: -.65s; }
+#pc-assistant .pc-capri.pc-angry { filter: drop-shadow(0 0 10px #ff003c) drop-shadow(0 3px 2px rgba(0, 0, 0, .35)); }
+
+/* Datenchip-Glitch: Capri flackert kurz wie ein gestörtes Signal */
+.pc-capri.pc-c-glitch { animation: pc-c-glitch .28s steps(1) 1; }
+@keyframes pc-c-glitch {
+  0% { transform: translate(-3px, 0); clip-path: inset(0 0 55% 0); filter: drop-shadow(-4px 0 0 #00f0ff) drop-shadow(4px 0 0 #ff2bd6); }
+  25% { transform: translate(4px, 1px); clip-path: inset(40% 0 0 0); filter: drop-shadow(4px 0 0 #00ff85) hue-rotate(60deg); }
+  50% { transform: translate(-2px, -1px); clip-path: inset(20% 0 30% 0); filter: drop-shadow(-3px 0 0 #ff2bd6) invert(.15); }
+  75% { transform: translate(2px, 0); clip-path: none; filter: drop-shadow(3px 0 0 #00f0ff); }
+  100% { transform: none; clip-path: none; }
+}
+
+/* Freche Rufblase neben Capri (nach einem Fund, beim Aufwachen) */
+#pc-assistant .pc-shout {
+  position: absolute; bottom: 92px; right: 100%; margin-right: 4px; width: max-content; max-width: 220px; padding: 6px 10px;
+  font: 700 13px/1.35 "PC Mono", Consolas, monospace; color: #07060d; background: #00ff85;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, calc(100% + 0px) 100%, 88% 80%, 0 80%); padding-bottom: 14px;
+  opacity: 0; transform: scale(.6) rotate(-6deg); transform-origin: bottom right; pointer-events: none;
+  filter: drop-shadow(0 0 8px #00ff85); transition: opacity .2s, transform .2s;
+}
+#pc-assistant.pc-lefthalf .pc-shout { right: auto; left: 100%; margin: 0 0 0 4px; transform-origin: bottom left; clip-path: polygon(0 0, 100% 0, 100% 80%, 12% 80%, 0 100%, 0 70%); }
+#pc-assistant .pc-shout.pc-shout-on { opacity: 1; transform: none; animation: pc-shout-wobble .35s ease-in-out 3; }
+@keyframes pc-shout-wobble { 50% { transform: rotate(3deg) scale(1.06); } }
+
+/* Schlafen: Zzz steigen auf */
+.pc-zzz { position: absolute; top: 4px; right: 4px; display: none; pointer-events: none; font: 700 18px "PC Orbitron", sans-serif; color: #00f0ff; text-shadow: 0 0 6px #00f0ff; }
+.pc-zzz, .pc-zzz span { animation: pc-zzz 2.4s ease-in infinite; }
+.pc-zzz span { display: inline-block; font-size: .8em; animation-delay: .5s; }
+.pc-zzz span + span { animation-delay: 1s; }
+.pc-capri[data-mode="sleep"] .pc-zzz { display: block; }
+#pc-assistant:has(.pc-3d) .pc-zzz { top: -50px; }
+@keyframes pc-zzz { 0% { opacity: 0; transform: translate(0, 8px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(10px, -22px); } }
+
+/* Nachtmodus: auf dunklen Seiten leuchtet sie neon */
+#pc-assistant.pc-night .pc-capri { animation: pc-neon 2.4s ease-in-out infinite; }
+#pc-assistant.pc-night .pc-capri.pc-angry { animation: none; }
+@keyframes pc-neon {
+  0%, 100% { filter: drop-shadow(0 0 6px #ff2bd6) drop-shadow(0 0 14px #ff2bd6) drop-shadow(0 0 2px #fff); }
+  50% { filter: drop-shadow(0 0 6px #00ff85) drop-shadow(0 0 16px #00f0ff) drop-shadow(0 0 2px #fff); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-capri *, .pc-capri, .pc-capri-svg, #pc-assistant .pc-shout { animation: none !important; transition: none !important; }
+}
+
+@keyframes pc-blink { 50% { opacity: 0; } }
+@keyframes pc-boot {
+  0% { opacity: 0; transform: translateX(30px) skewX(-12deg); clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%); }
+  60% { opacity: 1; transform: translateX(-4px) skewX(4deg); }
+  100% { transform: none; }
+}
+@keyframes pc-glitch {
+  0% { transform: translate(0); filter: drop-shadow(0 0 10px var(--hot)) hue-rotate(0); }
+  33% { transform: translate(-3px, 2px); filter: drop-shadow(-4px 0 0 #00f0ff) hue-rotate(40deg); }
+  66% { transform: translate(3px, -2px); filter: drop-shadow(4px 0 0 #ff2bd6) hue-rotate(-40deg); }
+  100% { transform: translate(0); }
+}
+
+/* ===== Warnfenster im gleichen Stil ===== */
+.pc-modal-wrap { position: fixed; inset: 0; z-index: 2147483647; display: flex; align-items: center; justify-content: center; background: rgba(4, 2, 10, .78); backdrop-filter: blur(3px); }
+.pc-modal-wrap .pc-frame {
+  width: min(500px, 92vw); padding: 2px; background: linear-gradient(135deg, var(--c1), var(--c2));
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  filter: drop-shadow(0 0 18px var(--hot)); animation: pc-boot .4s ease-out;
+}
+.pc-modal {
+  position: relative; padding: 22px 24px; background: var(--bg); color: var(--txt); clip-path: inherit; overflow: hidden;
+  font: 15px/1.5 "PC Mono", Consolas, monospace;
+}
+.pc-modal::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px); }
+.pc-modal h2 { margin: 0 0 10px; font: 700 18px/1.3 "PC Orbitron", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--c1); text-shadow: 0 0 8px var(--c1); }
+.pc-modal p { margin: 0 0 10px; }
+.pc-reason { margin: 3px 0; color: #ffd6f4; }
+.pc-modal-avatar { float: right; margin: 0 0 10px 14px; filter: drop-shadow(0 0 10px #ff003c); }
+.pc-btns { position: relative; z-index: 1; display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; flex-wrap: wrap; clear: both; }
+.pc-btns button { cursor: pointer; padding: 10px 18px; font: 700 12px "PC Orbitron", sans-serif; letter-spacing: .12em; text-transform: uppercase; border: 0; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+.pc-btn-safe { background: #00f0ff; color: #07060d; }
+.pc-btn-safe:hover { background: #fff; }
+.pc-btn-risk { background: transparent; color: var(--c2); text-decoration: underline; }

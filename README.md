@@ -221,7 +221,4 @@ Automatisierter End-to-End-Test mit **Playwright** in Chromium mit geladener Erw
 
 Entwicklungsnotizen und verwendete Werkzeuge: [docs/ENTWICKLUNG.md](docs/ENTWICKLUNG.md)
 
-<div align="center">
-<br>
-<sub>Entwickelt von <a href="https://github.com/Tscheky0">Tscheky0</a> · Schulungszentrum-Projekt 2026</sub>
-</div>
+
